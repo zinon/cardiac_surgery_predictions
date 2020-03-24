@@ -1,0 +1,518 @@
+Loaded data:
+    ID                       Name   Men   ...  In_hospital_mortality  CIP_CIM  DGS
+0  1.0        Maintok Fritz (M 69)   1.0  ...                    NaN      1.0  1.0
+1  2.0     Kaiser Siegfried (M 68)   1.0  ...                    NaN      NaN  1.0
+2  3.0      Stengel Manfred (M 66)   1.0  ...                    NaN      NaN  NaN
+3  4.0      Marko Siegfried (M 76)   1.0  ...                    1.0      NaN  NaN
+4  5.0  Meierhöfer Christel (W 82)   NaN  ...                    NaN      NaN  1.0
+
+[5 rows x 25 columns]
+         ID Name    Men   Women  ...  No_Stroke In_hospital_mortality  CIP_CIM  DGS
+1048569 NaN   NaN    NaN    NaN  ...        NaN                   NaN      NaN  NaN
+1048570 NaN   NaN    NaN    NaN  ...        NaN                   NaN      NaN  NaN
+1048571 NaN   NaN    NaN    NaN  ...        NaN                   NaN      NaN  NaN
+1048572 NaN   NaN    NaN    NaN  ...        NaN                   NaN      NaN  NaN
+1048573 NaN   NaN  575.0    NaN  ...        NaN                   NaN      NaN  NaN
+
+[5 rows x 25 columns]
+Plaque Volume:
+0       225
+1      1024
+2    1882.6
+3     536.4
+4       NaN
+Name: volume_plaque, dtype: object
+Columns:
+Index(['ID', 'Name', 'Men', 'Women', 'Age', 'CABG', 'Valve_AKE',
+       'Valve_MKE_MKR', 'Valve_TKR_TKE', 'Valve_AKE_Umman', 'Valve_KOMBI',
+       'CABG_Valve_AKE_CABG', 'CABG_Valve_MK_CABG', 'CABG_Valve_TK_CABG',
+       'CABG_Valve_AK_MK_TK_CABG', 'CABG_Umma',
+       'cross_clamping_no_touch_Aorta', 'Partial_clamping', 'No_calcification',
+       'volume_plaque', 'Stroke', 'No_Stroke', 'In_hospital_mortality',
+       'CIP_CIM', 'DGS'],
+      dtype='object')
+Rows reduced from 1048574 to 800 after removing empty rows
+Info: volume plaque type float64
+Data types:
+ID                               float64
+Name                              object
+Men                                 bool
+Women                               bool
+Age                                int64
+CABG                                bool
+Valve_AKE                           bool
+Valve_MKE_MKR                       bool
+Valve_TKR_TKE                       bool
+Valve_AKE_Umman                     bool
+Valve_KOMBI                         bool
+CABG_Valve_AKE_CABG                 bool
+CABG_Valve_MK_CABG                  bool
+CABG_Valve_TK_CABG                  bool
+CABG_Valve_AK_MK_TK_CABG            bool
+CABG_Umma                           bool
+cross_clamping_no_touch_Aorta       bool
+Partial_clamping                    bool
+No_calcification                    bool
+volume_plaque                    float64
+Stroke                              bool
+No_Stroke                           bool
+In_hospital_mortality               bool
+CIP_CIM                             bool
+DGS                                 bool
+Elder                               bool
+dtype: object
+Info: ranked per plaque
+Duplicates:
+        ID                     Name    Men  Women  ...  CIP_CIM    DGS  Elder   Rank
+152  153.0     Nickel Markus (M 42)   True  False  ...    False  False  False   33.5
+181  182.0     Nickel Markus (M 42)   True  False  ...    False  False  False   33.5
+210  211.0  Schroeter Ingrid (W 66)  False   True  ...    False  False   True  271.0
+282  283.0      Müller Klaus (M 63)   True  False  ...    False  False   True  624.0
+309  310.0      Müller Klaus (M 63)   True  False  ...    False   True   True  595.0
+423  424.0   Grzeschik Franz (M 71)   True  False  ...     True  False   True  436.0
+476  477.0  Schroeter Ingrid (W 66)  False   True  ...    False  False   True  390.0
+532  533.0   Grzeschik Franz (M 71)   True  False  ...    False  False   True  578.0
+
+[8 rows x 27 columns]
+Rows reduced from 799 to 795 after removing duplicated entries
+     Men  Women  Age   CABG  ...  CIP_CIM    DGS  Elder   Rank
+0   True  False   69   True  ...     True   True   True  220.0
+1   True  False   68   True  ...    False   True   True  473.0
+2   True  False   66  False  ...    False  False   True  583.0
+3   True  False   76  False  ...    False  False   True  346.0
+4  False   True   82   True  ...    False   True   True   33.5
+
+[5 rows x 25 columns]
+Df shape:
+(795, 25)
+Df description:
+              Age  volume_plaque        Rank
+count  795.000000     795.000000  795.000000
+mean    69.182390    1557.183774  382.321384
+std      8.964705    2273.632346  230.075687
+min      0.000000       0.000000    1.000000
+25%     64.000000     195.450000  182.500000
+50%     70.000000     723.400000  381.000000
+75%     76.000000    1899.000000  581.500000
+max     89.000000   22221.100000  781.000000
+Final Rows 795
+########################################
+No Stroke 
+
+
+All data
+              Age  volume_plaque        Rank
+count  795.000000     795.000000  795.000000
+mean    69.182390    1557.183774  382.321384
+std      8.964705    2273.632346  230.075687
+min      0.000000       0.000000    1.000000
+25%     64.000000     195.450000  182.500000
+50%     70.000000     723.400000  381.000000
+75%     76.000000    1899.000000  581.500000
+max     89.000000   22221.100000  781.000000
+
+ Partial Clamping + No Stroke
+              Age  volume_plaque        Rank
+count  347.000000     347.000000  347.000000
+mean    70.435159    1556.684438  405.389049
+std      7.690789    2178.855721  213.112273
+min     33.000000       0.000000   33.500000
+25%     65.000000     284.750000  242.500000
+50%     71.000000     764.200000  404.000000
+75%     77.000000    1794.000000  574.500000
+max     89.000000   18945.300000  780.000000
+
+ Cross Clamping + No Stroke
+              Age  volume_plaque        Rank
+count  170.000000     170.000000  170.000000
+mean    69.388235    1803.333529  400.152941
+std      7.893663    2812.025464  233.054137
+min     40.000000       0.000000   33.500000
+25%     65.000000     181.375000  189.500000
+50%     70.000000     628.800000  372.000000
+75%     75.000000    2204.425000  611.500000
+max     87.000000   22221.100000  781.000000
+
+Hypothesis tests
+
+Mean values (1556.6844380403459, 1803.3335294117644)
+Std deviations (2178.8557213055196, 2812.025463703005)
+
+t-test:
+H0: there is association in variable volume_plaque for positive or negative None
+t-test = -1.095454 p-value = 0.273830
+we accept null hypothesis at 95 % CL
+
+ANOVA:
+H0=the means of the volume_plaque samples are equal for positive or negative None
+test-stat = 1.200019 p-value = 0.273830
+we accept null hypothesis at 95 % CL
+
+Z-test (for mean based on normal distribution, one or two samples):
+H0 : the mean of two independent groups is the same
+Z-test = -1.095454 p-value = 0.273318
+we accept null hypothesis at 95 % CL
+
+Z-test (two-sided test statistic for checking identical means):
+H0: the means of two distributions are identical
+Z-test = -1.095454 p-value = 0.273318
+we accept null hypothesis at 95 % CL
+
+t-test (two-sided for checking identical means):
+H0: the means of two distributions are identical
+t-test = -1.095454 p-value = 0.273830 DoF = 515
+we accept null hypothesis at 95 % CL
+
+Overflow 5000
+Range 0.000000:5000.000000 bins=[ 100| 200| 300| 400| 500| 600| 700| 800| 900|1000|1100|1200|1300|1400|
+ 1500|1600|1700|1800|1900|2000|2100|2200|2300|2400|2500|2600|2700|2800|
+ 2900|3000|3100|3200|3300|3400|3500|3600|3700|3800|3900|4000|4100|4200|
+ 4300|4400|4500|4600|4700|4800|4900|5000|5100] binw=100.000000
+
+chi-squared test (Tests whether two categorical variables are related or independent):
+Contingency table
+Partial_clamping true false
+cross_clamping_no_touch_Aorta true false
+=
+[[359, 436], [175, 620]]
+Total Partial_clamping 795
+Total cross_clamping_no_touch_Aorta 795
+H0: the two samples are independent
+chi2 test stat=94.427, dof=1, p=0.000
+we reject the null hypothesis at 95 % CL
+########################################
+Stroke 
+
+
+All data
+              Age  volume_plaque        Rank
+count  795.000000     795.000000  795.000000
+mean    69.182390    1355.048050  382.321384
+std      8.964705    1554.001617  230.075687
+min      0.000000       0.000000    1.000000
+25%     64.000000     195.450000  182.500000
+50%     70.000000     723.400000  381.000000
+75%     76.000000    1899.000000  581.500000
+max     89.000000    5050.000000  781.000000
+
+ Partial Clamping + Stroke
+             Age  volume_plaque       Rank
+count  11.000000      11.000000  11.000000
+mean   69.909091    1593.718182   8.818182
+std     7.034978    1774.139064   4.976308
+min    59.000000      69.900000   1.000000
+25%    65.500000     421.350000   5.500000
+50%    67.000000     826.500000   8.000000
+75%    75.000000    2440.600000  12.500000
+max    81.000000    5050.000000  17.000000
+
+ Cross Clamping + Stroke
+             Age  volume_plaque       Rank
+count   5.000000       5.000000   5.000000
+mean   72.200000    2255.980000  11.000000
+std     6.685806    2010.826954   5.830952
+min    64.000000      77.500000   2.000000
+25%    68.000000    1057.000000  10.000000
+50%    71.000000    1544.300000  12.000000
+75%    79.000000    3551.100000  13.000000
+max    79.000000    5050.000000  18.000000
+
+Hypothesis tests
+
+Mean values (1593.7181818181816, 2255.98)
+Std deviations (1774.1390643453979, 2010.8269535193724)
+
+t-test:
+H0: there is association in variable volume_plaque for positive or negative None
+t-test = -0.665559 p-value = 0.516509
+we accept null hypothesis at 95 % CL
+
+ANOVA:
+H0=the means of the volume_plaque samples are equal for positive or negative None
+test-stat = 0.442968 p-value = 0.516509
+we accept null hypothesis at 95 % CL
+
+Z-test (for mean based on normal distribution, one or two samples):
+H0 : the mean of two independent groups is the same
+Z-test = -0.665559 p-value = 0.505693
+we accept null hypothesis at 95 % CL
+
+Z-test (two-sided test statistic for checking identical means):
+H0: the means of two distributions are identical
+Z-test = -0.665559 p-value = 0.505693
+we accept null hypothesis at 95 % CL
+
+t-test (two-sided for checking identical means):
+H0: the means of two distributions are identical
+t-test = -0.665559 p-value = 0.516509 DoF = 14
+we accept null hypothesis at 95 % CL
+
+Overflow 5000
+Range 0.000000:5000.000000 bins=[ 100| 200| 300| 400| 500| 600| 700| 800| 900|1000|1100|1200|1300|1400|
+ 1500|1600|1700|1800|1900|2000|2100|2200|2300|2400|2500|2600|2700|2800|
+ 2900|3000|3100|3200|3300|3400|3500|3600|3700|3800|3900|4000|4100|4200|
+ 4300|4400|4500|4600|4700|4800|4900|5000|5100] binw=100.000000
+
+chi-squared test (Tests whether two categorical variables are related or independent):
+Contingency table
+Partial_clamping true false
+cross_clamping_no_touch_Aorta true false
+=
+[[359, 436], [175, 620]]
+Total Partial_clamping 795
+Total cross_clamping_no_touch_Aorta 795
+H0: the two samples are independent
+chi2 test stat=94.427, dof=1, p=0.000
+we reject the null hypothesis at 95 % CL
+########################################
+In hospital mortality 
+
+
+All data
+              Age  volume_plaque        Rank
+count  795.000000     795.000000  795.000000
+mean    69.182390    1355.048050  382.321384
+std      8.964705    1554.001617  230.075687
+min      0.000000       0.000000    1.000000
+25%     64.000000     195.450000  182.500000
+50%     70.000000     723.400000  381.000000
+75%     76.000000    1899.000000  581.500000
+max     89.000000    5050.000000  781.000000
+
+ Partial Clamping + In hospital mortality
+             Age  volume_plaque        Rank
+count  23.000000      23.000000   23.000000
+mean   72.782609    1517.334783  411.760870
+std     8.903301    1482.268194  224.030835
+min    49.000000       0.000000    9.000000
+25%    68.500000     538.500000  317.000000
+50%    75.000000     971.300000  404.000000
+75%    77.500000    2106.100000  600.000000
+max    87.000000    5050.000000  747.000000
+
+ Cross Clamping + In hospital mortality
+             Age  volume_plaque        Rank
+count  18.000000      18.000000   18.000000
+mean   71.000000    1825.127778  435.055556
+std     6.202466    1679.291185  248.648221
+min    58.000000      49.700000   12.000000
+25%    67.250000     375.075000  217.250000
+50%    72.500000    1431.450000  502.000000
+75%    75.750000    3112.225000  663.500000
+max    79.000000    5050.000000  768.000000
+
+Hypothesis tests
+
+Mean values (1517.3347826086958, 1825.127777777778)
+Std deviations (1482.268194236208, 1679.2911847862042)
+
+t-test:
+H0: there is association in variable volume_plaque for positive or negative None
+t-test = -0.622498 p-value = 0.537237
+we accept null hypothesis at 95 % CL
+
+ANOVA:
+H0=the means of the volume_plaque samples are equal for positive or negative None
+test-stat = 0.387504 p-value = 0.537237
+we accept null hypothesis at 95 % CL
+
+Z-test (for mean based on normal distribution, one or two samples):
+H0 : the mean of two independent groups is the same
+Z-test = -0.622498 p-value = 0.533614
+we accept null hypothesis at 95 % CL
+
+Z-test (two-sided test statistic for checking identical means):
+H0: the means of two distributions are identical
+Z-test = -0.622498 p-value = 0.533614
+we accept null hypothesis at 95 % CL
+
+t-test (two-sided for checking identical means):
+H0: the means of two distributions are identical
+t-test = -0.622498 p-value = 0.537237 DoF = 39
+we accept null hypothesis at 95 % CL
+
+Overflow 5000
+Range 0.000000:5000.000000 bins=[ 100| 200| 300| 400| 500| 600| 700| 800| 900|1000|1100|1200|1300|1400|
+ 1500|1600|1700|1800|1900|2000|2100|2200|2300|2400|2500|2600|2700|2800|
+ 2900|3000|3100|3200|3300|3400|3500|3600|3700|3800|3900|4000|4100|4200|
+ 4300|4400|4500|4600|4700|4800|4900|5000|5100] binw=100.000000
+
+chi-squared test (Tests whether two categorical variables are related or independent):
+Contingency table
+Partial_clamping true false
+cross_clamping_no_touch_Aorta true false
+=
+[[359, 436], [175, 620]]
+Total Partial_clamping 795
+Total cross_clamping_no_touch_Aorta 795
+H0: the two samples are independent
+chi2 test stat=94.427, dof=1, p=0.000
+we reject the null hypothesis at 95 % CL
+########################################
+CIP CIM 
+
+
+All data
+              Age  volume_plaque        Rank
+count  795.000000     795.000000  795.000000
+mean    69.182390    1355.048050  382.321384
+std      8.964705    1554.001617  230.075687
+min      0.000000       0.000000    1.000000
+25%     64.000000     195.450000  182.500000
+50%     70.000000     723.400000  381.000000
+75%     76.000000    1899.000000  581.500000
+max     89.000000    5050.000000  781.000000
+
+ Partial Clamping + CIP CIM
+             Age  volume_plaque        Rank
+count  11.000000      11.000000   11.000000
+mean   71.272727    1024.863636  313.727273
+std     5.368257    1446.429246  221.218485
+min    62.000000      36.300000   11.000000
+25%    69.000000     205.000000  154.000000
+50%    71.000000     486.200000  297.000000
+75%    76.000000    1080.800000  427.500000
+max    78.000000    5050.000000  755.000000
+
+ Cross Clamping + CIP CIM
+             Age  volume_plaque        Rank
+count  10.000000      10.000000   10.000000
+mean   72.600000    2447.900000  450.400000
+std     5.481281    2221.380058  249.947639
+min    60.000000     134.000000   18.000000
+25%    71.000000     665.225000  325.000000
+50%    73.500000    1236.900000  447.500000
+75%    76.250000    4997.200000  669.250000
+max    79.000000    5050.000000  768.000000
+
+Hypothesis tests
+
+Mean values (1024.8636363636363, 2447.9)
+Std deviations (1446.4292462977423, 2221.3800575318037)
+
+t-test:
+H0: there is association in variable volume_plaque for positive or negative None
+t-test = -1.756367 p-value = 0.095132
+we accept null hypothesis at 95 % CL
+
+ANOVA:
+H0=the means of the volume_plaque samples are equal for positive or negative None
+test-stat = 3.084827 p-value = 0.095132
+we accept null hypothesis at 95 % CL
+
+Z-test (for mean based on normal distribution, one or two samples):
+H0 : the mean of two independent groups is the same
+Z-test = -1.756367 p-value = 0.079026
+we accept null hypothesis at 95 % CL
+
+Z-test (two-sided test statistic for checking identical means):
+H0: the means of two distributions are identical
+Z-test = -1.756367 p-value = 0.079026
+we accept null hypothesis at 95 % CL
+
+t-test (two-sided for checking identical means):
+H0: the means of two distributions are identical
+t-test = -1.756367 p-value = 0.095132 DoF = 19
+we accept null hypothesis at 95 % CL
+
+Overflow 5000
+Range 0.000000:5000.000000 bins=[ 100| 200| 300| 400| 500| 600| 700| 800| 900|1000|1100|1200|1300|1400|
+ 1500|1600|1700|1800|1900|2000|2100|2200|2300|2400|2500|2600|2700|2800|
+ 2900|3000|3100|3200|3300|3400|3500|3600|3700|3800|3900|4000|4100|4200|
+ 4300|4400|4500|4600|4700|4800|4900|5000|5100] binw=100.000000
+
+chi-squared test (Tests whether two categorical variables are related or independent):
+Contingency table
+Partial_clamping true false
+cross_clamping_no_touch_Aorta true false
+=
+[[359, 436], [175, 620]]
+Total Partial_clamping 795
+Total cross_clamping_no_touch_Aorta 795
+H0: the two samples are independent
+chi2 test stat=94.427, dof=1, p=0.000
+we reject the null hypothesis at 95 % CL
+########################################
+DGS 
+
+
+All data
+              Age  volume_plaque        Rank
+count  795.000000     795.000000  795.000000
+mean    69.182390    1355.048050  382.321384
+std      8.964705    1554.001617  230.075687
+min      0.000000       0.000000    1.000000
+25%     64.000000     195.450000  182.500000
+50%     70.000000     723.400000  381.000000
+75%     76.000000    1899.000000  581.500000
+max     89.000000    5050.000000  781.000000
+
+ Partial Clamping + DGS
+             Age  volume_plaque        Rank
+count  52.000000      52.000000   52.000000
+mean   73.403846    1648.494231  453.817308
+std     6.408510    1611.332238  206.715183
+min    60.000000       0.000000    6.000000
+25%    67.750000     466.800000  312.000000
+50%    75.000000    1032.500000  474.500000
+75%    78.000000    2231.950000  613.500000
+max    83.000000    5050.000000  778.000000
+
+ Cross Clamping + DGS
+             Age  volume_plaque        Rank
+count  32.000000      32.000000   32.000000
+mean   72.000000    2242.543750  478.203125
+std     6.681703    1875.187524  246.250720
+min    52.000000       0.000000   10.000000
+25%    68.000000     644.050000  341.000000
+50%    74.000000    1527.450000  518.000000
+75%    77.000000    3838.700000  691.500000
+max    82.000000    5050.000000  777.000000
+
+Hypothesis tests
+
+Mean values (1648.494230769231, 2242.54375)
+Std deviations (1611.3322377940246, 1875.1875235151215)
+
+t-test:
+H0: there is association in variable volume_plaque for positive or negative None
+t-test = -1.540913 p-value = 0.127188
+we accept null hypothesis at 95 % CL
+
+ANOVA:
+H0=the means of the volume_plaque samples are equal for positive or negative None
+test-stat = 2.374412 p-value = 0.127188
+we accept null hypothesis at 95 % CL
+
+Z-test (for mean based on normal distribution, one or two samples):
+H0 : the mean of two independent groups is the same
+Z-test = -1.540913 p-value = 0.123338
+we accept null hypothesis at 95 % CL
+
+Z-test (two-sided test statistic for checking identical means):
+H0: the means of two distributions are identical
+Z-test = -1.540913 p-value = 0.123338
+we accept null hypothesis at 95 % CL
+
+t-test (two-sided for checking identical means):
+H0: the means of two distributions are identical
+t-test = -1.540913 p-value = 0.127188 DoF = 82
+we accept null hypothesis at 95 % CL
+
+Overflow 5000
+Range 0.000000:5000.000000 bins=[ 100| 200| 300| 400| 500| 600| 700| 800| 900|1000|1100|1200|1300|1400|
+ 1500|1600|1700|1800|1900|2000|2100|2200|2300|2400|2500|2600|2700|2800|
+ 2900|3000|3100|3200|3300|3400|3500|3600|3700|3800|3900|4000|4100|4200|
+ 4300|4400|4500|4600|4700|4800|4900|5000|5100] binw=100.000000
+
+chi-squared test (Tests whether two categorical variables are related or independent):
+Contingency table
+Partial_clamping true false
+cross_clamping_no_touch_Aorta true false
+=
+[[359, 436], [175, 620]]
+Total Partial_clamping 795
+Total cross_clamping_no_touch_Aorta 795
+H0: the two samples are independent
+chi2 test stat=94.427, dof=1, p=0.000
+we reject the null hypothesis at 95 % CL

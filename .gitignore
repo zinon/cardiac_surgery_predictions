@@ -1,0 +1,9 @@
+*~
+*.zip
+*.pyc
+*.txt
+data/
+pies/
+graphs/
+plots/
+__pycache__/
