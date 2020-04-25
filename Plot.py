@@ -8,15 +8,56 @@ import numpy as np
 data  = pp.get_data(indata = 'data/new/TemplateSteliosDuplicates.csv',
                     verbose = True)
 
+stat_ages_gen = True
+stat_ages = False
 stackplot_stroke_per_gender = False
 stackplot_stroke_per_clamping = False
-stackplot_stroke_per_ake = True
+stackplot_stroke_per_ake = False
 stroke_no_stroke_hist = False
 die_alive_marginal_plot = False
 plaque_gender_hist = False
 plaque_gender_hist = False
 scatter_matrix = False
 plaque_cabg_hist = False
+
+if stat_ages_gen:
+
+    case = 'In_hospital_mortality'
+    #case = 'Stroke'
+    #case = 'DGS'
+    #case = 'CIP_CIM'
+
+    df = data.query( '%s == True'%(case) ) [ ['Age'] ]
+    print(df.describe())
+
+if stat_ages:
+    #col = 'Women'
+    col = 'Men'
+    
+    #case = 'In_hospital_mortality'
+    #case = 'Stroke'
+    #case = 'DGS'
+    case = 'CIP_CIM'
+    
+    #df = data[ data[col]  == True].groupby('In_hospital_mortality')#[[col]].sum()
+    #df = df.reset_index()
+    #df = data[ data['Men']  == True].groupby('In_hospital_mortality').apply(
+    #    lambda x: 100 * x / x.sum() )
+    
+    #
+
+    #new_col = 'Mort%s'%(col)
+    #df[new_col] = df[col]/total
+    #df = df[ [col, new_col, 'Age'] ]
+    
+
+    df = data.query( '%s == True and %s == True'%(col, case) ) [ ['Age', col] ]
+    total = df[col].sum()
+
+    
+    print("%s %s : %i"%(case, col, total))
+    print(df.head())
+    print(df.describe())
 
 if stackplot_stroke_per_gender:
     plt.figure(figsize=(10,10)) 
