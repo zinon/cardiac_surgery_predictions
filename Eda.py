@@ -63,11 +63,11 @@ def histo(df = None,
     #limits
     xmin = xmin if xmax else df[x].min()
     xmax = xmax if xmax else df[x].max()
-
+    
     #default bin width
     if not binw:
         total = df[x].value_counts(dropna=True).sum()
-        print("Sum of %s = %f"%(label, total))
+        print("Sum of %s = %f"%(title, total))
         binw = round( math.sqrt( math.fabs(total)) )
         
     #bins 1
@@ -93,10 +93,11 @@ def histo(df = None,
         bins = np.append(bins, bins[-1] + binw)
 
     nbins = bins.size
-    print("Range %f:%f bins=%s binw=%f"%(xmin,
-                                         xmax,
-                                         np.array2string(bins, separator='|'),
-                                         binw))
+    print("Histogram range %f:%f binw=%.2f bins=%s"%(xmin,
+                                                   xmax,                                            
+                                                   binw,
+                                                   np.array2string(bins, separator='|'),
+    ))
 
 
     #numeric overflow
@@ -140,6 +141,8 @@ def histo(df = None,
     if display:
         plt.show()
 
+    plt.close('all')
+
 ############################################################################
 def multiple(df = None, test = False, display = False):
 
@@ -149,7 +152,6 @@ def multiple(df = None, test = False, display = False):
 
     for c, item in enumerate(items):
         for case in cases: 
-            print(60*"=")
             word_item = item.replace("_", " ").title()
             if "plaque" in item:
                 word_item = "Plaque Volume"
@@ -160,8 +162,8 @@ def multiple(df = None, test = False, display = False):
             title = word_item + " and " + word_case
             if "plaque" in item:
                 word_item+=" [$mm^3$]"
-                xmin = 0
-                xmax = 5000
+                xmin = None
+                xmax = None
                 binw = 100
             if "Age" in item:
                 word_item+=" [years]"
@@ -169,12 +171,15 @@ def multiple(df = None, test = False, display = False):
                 xmax = 100
                 binw = 1
 
-            print(title)
+            print(80*"=")
+            print("Case", title)
+            print(80*"=")
+            
             histo(df = df,
                   x = item,
                   title = title,
-                  query1 = case+" == 0", label1 = "No "+word_case,
-                  query2 = case+"== 1", label2 = word_case,
+                  query1 = case+" == 0", label1 = "Negative "+word_case,
+                  query2 = case+"== 1", label2 = "Positive "+word_case,
                   y = case,
                   xmin = xmin,
                   xmax = xmax,
@@ -186,6 +191,7 @@ def multiple(df = None, test = False, display = False):
                   display = display)
             if test and c == 0:
                 break
+##########################################################################
 def pie(title = '', percentages = [], labels = [], folder = 'pies'):
     color_palette_list = ['#009ACD', '#ADD8E6', '#63D1F4', '#0EBFE9', 
                           '#C1F0F6', '#0099CC']
@@ -215,9 +221,13 @@ def pie(title = '', percentages = [], labels = [], folder = 'pies'):
     plt.show()
     
 ##########################################################################
-def specific(df = None, q1 = "", l1 = "", q2 = "", l2 = "",
+def specific(df = None,
+             q1 = "", l1 = "",
+             q2 = "", l2 = "",
              title = "",
-             xmin = 0, xmax = 5000, binw = 100, ):
+             xmin = None,
+             xmax = None,
+             binw = None, ):
 
     name = (l1 + "_" + l2).replace(" ", "_")
     histo(df = df,
@@ -235,7 +245,7 @@ def specific(df = None, q1 = "", l1 = "", q2 = "", l2 = "",
           name = name,
           display = False,
           use_queries_for_hypo = True)
-
+###########################################################################
 def special(df = None):
     cases = cs.specific
 
@@ -243,6 +253,7 @@ def special(df = None):
         print(40*"#")
         tcase = c.replace("_", " ")
         print(tcase, "\n")
+        
         specific(df = df,
                  q1 = "Partial_clamping == 1 and %s == 1"%(c),
                  l1 = 'Partial Clamping + '+tcase,
@@ -254,7 +265,7 @@ def special(df = None):
                     x1 = "Partial_clamping",
                     x2 = "cross_clamping_no_touch_Aorta",
                     cond = c)
-
+###########################################################################
 def stats(df = None):
     cases = cs.cases
 
@@ -269,7 +280,7 @@ def stats(df = None):
                                                          100.*found_false/total)
 
         )
-
+###########################################################################
 def make_pie(df = None, title='', case = '', labels = []):
     total = df.shape[0]
     ntrue = df[case].values.sum() * 100. / total
@@ -281,14 +292,23 @@ def make_pie(df = None, title='', case = '', labels = []):
 df  = pp.get_data(indata = 'data/new/TemplateSteliosDuplicates.csv',
                   verbose = True)
 
-#multiple(df = df, test = False, display = False)
-#special(df = df)
-#stats(df = df)
 
-pie_Mort = True
+do_multiple = True
+do_special = False
+do_stats = False
+pie_Mort = False
 pie_Stroke = False
 pie_cip_cim = False
 pie_dgs = False
+
+if do_multiple:
+    multiple(df = df, test = False, display = False)
+
+if do_special:
+    special(df = df)
+
+if do_stats:
+    stats(df = df)
 
 if pie_Mort:
     make_pie(df,

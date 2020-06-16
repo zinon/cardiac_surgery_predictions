@@ -8,7 +8,7 @@ import numpy as np
 data  = pp.get_data(indata = 'data/new/TemplateSteliosDuplicates.csv',
                     verbose = True)
 
-stat_ages_gen = True
+stat_ages_gen = False
 stat_ages = False
 stackplot_stroke_per_gender = False
 stackplot_stroke_per_clamping = False
@@ -16,7 +16,7 @@ stackplot_stroke_per_ake = False
 stroke_no_stroke_hist = False
 die_alive_marginal_plot = False
 plaque_gender_hist = False
-plaque_gender_hist = False
+plaque_dgs_hist = True
 scatter_matrix = False
 plaque_cabg_hist = False
 
@@ -140,7 +140,24 @@ if stroke_no_stroke_hist:
     #        range=[data["PlaqueVolume"].min(), data["PlaqueVolume"].max()])
     ax.legend()
     plt.show()
-    
+
+if plaque_dgs_hist:
+    plaque_dgs_1 = data["volume_plaque"].where(data["DGS"]==1).replace(np.nan, 0)
+    plaque_dgs_0 = data["volume_plaque"].where(data["DGS"]==0).replace(np.nan, 0)
+    xmin = data["volume_plaque"].min()
+    #xmax = data["PlaqueVolume"].max()
+    xmax = 15e3
+    fig = plt.figure(figsize=(10, 5))
+    ax = sns.kdeplot(plaque_dgs_1, color = 'Red', label='Delirium', shade=True,  clip=(xmin, xmax))
+    ax = sns.kdeplot(plaque_dgs_0, color = 'Blue', label='No Delirium', shade=True, clip=(xmin, xmax))
+    #plt.yticks([])
+
+    plt.title('Delirium')
+    plt.ylabel('Normalized to unit area')
+    plt.xlabel('Plaque volume [$mm^3$]')
+    plt.xlim(0, xmax)
+    plt.show()
+
 if plaque_gender_hist:
     plaque_men = data["PlaqueVolume"].where(data["Man"]==1).replace(np.nan, 0)
     plaque_women = data["PlaqueVolume"].where(data["Man"]==0).replace(np.nan, 0)
