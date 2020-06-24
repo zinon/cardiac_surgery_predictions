@@ -4,7 +4,8 @@ import numpy as np
 from pandas.api.types import is_string_dtype
 
 def get_data(indata = '',
-             verbose = False):
+             verbose = False,
+             drop_useless_cols = True):
     ####################################################################
     #read in data using pandas
     ####################################################################
@@ -133,7 +134,8 @@ def get_data(indata = '',
     print("Rows reduced from %i to %i after removing duplicated entries"%(rows, len(df.index)))
 
     #get rid of useless data
-    df.drop(["Name", "ID"], axis=1, inplace=True)
+    if drop_useless_cols:
+        df.drop(["Name", "ID"], axis=1, inplace=True)
     
     #final check
     if verbose:

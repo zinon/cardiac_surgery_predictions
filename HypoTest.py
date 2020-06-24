@@ -74,9 +74,10 @@ def print_stat_p(stat, p):
   print('stat=%.6f, p=%.6f' % (stat, p))
 
 def hypotest(df = None, x = "", y = "", q1 = "", q2 = ""):
-  #df  = pp.get_df(verbose = True)
+  print("\n--- HYPOTHESIS TESTS --- ")
 
   if y:
+    medians = df.groupby(y)[x].median()
     means = df.groupby(y)[x].mean()
     stds = df.groupby(y)[x].std()
 
@@ -84,8 +85,9 @@ def hypotest(df = None, x = "", y = "", q1 = "", q2 = ""):
     x_y_true =  df.loc[ df[y] == 1][x].values
     x_y_false =  df.loc[ df[y] == 0][x].values
   elif q1 and q2:
-    means = df.query(q1)[x].mean(), df.query(q2)[x].mean()
-    stds = df.query(q1)[x].std(), df.query(q2)[x].std()
+    medians = df.query(q1)[x].median() , df.query(q2)[x].median()
+    means = df.query(q1)[x].mean()     , df.query(q2)[x].mean()
+    stds = df.query(q1)[x].std()       , df.query(q2)[x].std()
 
     #get np arrays
     x_y_true = df.query(q1)[x].values
@@ -96,17 +98,18 @@ def hypotest(df = None, x = "", y = "", q1 = "", q2 = ""):
     exit(1)
 
   print('~'*40)
-  print("\nMean & Std")
+  print("\nMean, Std & Median")
+  print("(%s, %s)"%(q1, q2))
   print(80*"-")
 
   print("Mean values", means)
   print("Std deviations", stds)
-
+  print("Median values", medians)
+  
   print(80*"-")
   print("\nNormality tests (whether a data sample has a normal distribution)")
   print(80*"-")
 
-  print('~'*40)
   print("\nShapiro-Wilk:")
   print("H0: the sample for variable %s has a Gaussian distribution for positive %s"%(x, y))
   if x_y_true.size >= 3:
@@ -145,7 +148,7 @@ def hypotest(df = None, x = "", y = "", q1 = "", q2 = ""):
   else:
     print("Cannot be performed because of size", x_y_false.size )
 
-    print('~'*40)
+  print('~'*40)
   print("\nAnderson-Darling Test")
   print("H0: the sample for variable %s has a Gaussian distribution for positive %s"%(x, y))
   result = anderson(x_y_true)

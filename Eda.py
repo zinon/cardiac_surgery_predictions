@@ -44,12 +44,13 @@ def histo(df = None,
     #stats
     if y:
         columns_to_show = [x]
-        print( "\n", df.groupby([y])[columns_to_show].agg([np.mean,
-                                                           np.std,
-                                                           np.min, 
-                                                           np.max,
-                                                           "count",
-                                                           "median"]
+        print( "Statical information\n",
+               df.groupby([y])[columns_to_show].agg([np.mean,
+                                                     np.std,
+                                                     np.min, 
+                                                     np.max,
+                                                     "count",
+                                                     "median"]
     ) )
 
 
@@ -219,7 +220,7 @@ def pie(title = '', percentages = [], labels = [], folder = 'pies'):
     name = title.replace(' ', '_')
     plt.savefig('%s/%s.png'%(folder, name))
     plt.show()
-    
+
 ##########################################################################
 def specific(df = None,
              q1 = "", l1 = "",
@@ -250,10 +251,10 @@ def special(df = None):
     cases = cs.specific
 
     for c in cases:
-        print(40*"#")
+        print(60*"#")
         tcase = c.replace("_", " ")
-        print(tcase, "\n")
-        
+        print(tcase)
+        print(60*"#")
         specific(df = df,
                  q1 = "Partial_clamping == 1 and %s == 1"%(c),
                  l1 = 'Partial Clamping + '+tcase,
@@ -288,18 +289,58 @@ def make_pie(df = None, title='', case = '', labels = []):
 
     pie(title = title, percentages = [ntrue, nfalse], labels = labels)
 
+
+def make_histo_bars(df = None):
+    techs = [
+        "CABG",
+        'Valve_AKE',
+        'Valve_MKE_MKR',
+        'Valve_TKR_TKE',
+        'Valve_AKE_Umman',
+        'Valve_KOMBI',
+        'CABG_Valve_AKE_CABG',
+        'CABG_Valve_MK_CABG',
+        'CABG_Valve_TK_CABG',
+        'CABG_Valve_AK_MK_TK_CABG',
+        'CABG_Umma',
+        'cross_clamping_no_touch_Aorta',
+        'Partial_clamping',
+        'No_calcification',
+    ]
+
+    probs = [
+        'Stroke',
+        #'No_Stroke',
+        'In_hospital_mortality',
+        'CIP_CIM',
+        'DGS'
+    ]
+    for tech in techs:
+        for prob in probs:
+            qu = "%s == 1"%(prob)
+    
+            df1 = df.query( qu ).copy()
+            counts = int(df1[tech].values.sum())
+            print(f'{tech:30} {prob:30} {counts:3}')
+        
 ###########################################################################
 df  = pp.get_data(indata = 'data/new/TemplateSteliosDuplicates.csv',
                   verbose = True)
 
+df.sort_values(by=['volume_plaque'], ascending=True, inplace=True)
+print("10 Top Ranked values:")
+print(df['volume_plaque'].head(10))
+print("10 Bottom Ranked values:")
+print(df['volume_plaque'].tail(10))
 
-do_multiple = True
+do_multiple = False
 do_special = False
 do_stats = False
 pie_Mort = False
 pie_Stroke = False
 pie_cip_cim = False
 pie_dgs = False
+do_histo_bars = True
 
 if do_multiple:
     multiple(df = df, test = False, display = False)
@@ -334,3 +375,5 @@ if pie_dgs:
              case = 'DGS',
              labels = ['Positive', 'Negative'])
     
+if do_histo_bars:
+    make_histo_bars(df)
